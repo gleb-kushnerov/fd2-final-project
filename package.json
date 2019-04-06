@@ -1,0 +1,14 @@
+{
+  "name": "fd2-final-project",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.11.0"
+  },
+  "scripts": {
+    "scss": "gulp sass",
+    "scss: watch": "gulp scss: watch"
+  }
+}

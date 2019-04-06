@@ -1,0 +1,31 @@
+.features {
+  box-sizing: border-box;
+  padding: var(--top-padding) 0 var(--bottom-padding) 0;
+  background: url("../img/features-bg.jpg") no-repeat top center;
+  background-size: cover; }
+  .features h1 {
+    color: #fff; }
+  .features .btn {
+    margin: 50px 0 0 0; }
+  .features .features-main-content {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .features .features-main-content .features-item {
+      margin: 20px 0;
+      flex: 0 0 520px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start; }
+      .features .features-main-content .features-item .ico-container {
+        flex: 0 0 auto;
+        margin-right: 30px;
+        width: 80px;
+        height: 80px;
+        background-color: var(--orange-color);
+        border-radius: 50%; }
+      .features .features-main-content .features-item .info {
+        text-align: left; }
+        .features .features-main-content .features-item .info p {
+          color: #fff; }
