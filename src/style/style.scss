@@ -3,6 +3,10 @@
 @import "cab-info";
 @import "tariffs";
 @import "features";
+@import "download";
+@import "clients";
+@import "call";
+@import "footer";
 
 body {
   padding: 0;
@@ -37,6 +41,12 @@ h3 {
 h4 {
   font-size: 1.4em;
   color: var(--orange-color);
+}
+
+h5 {
+  font-size: 1.1em;
+  color: var(--orange-color);
+  margin: 0;
 }
 
 h1, h2, h3, h4 {
