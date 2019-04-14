@@ -1,0 +1,50 @@
+.clients {
+  box-sizing: border-box;
+  padding: var(--top-padding) 0 var(--bottom-padding) 0;
+  background: url("../img/clients-bg.jpg") no-repeat top center;
+  background-size: cover;
+  
+  h1 {
+    color: #fff;
+  }
+
+  .clients-main-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
+
+    .clients-item {
+      box-sizing: border-box;
+      padding: 30px;
+      flex: 0 0 580px;
+      background-color: #000;
+      text-align: left;
+      border-radius: 30px;
+      
+      p {
+        color: #fff;
+        margin-top: 0;
+      }
+
+      .client-container {
+        width: 235px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+          flex: 0 0 auto;
+        }
+
+        .info {
+          height: 55px;
+
+          p {
+            text-transform: uppercase;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
