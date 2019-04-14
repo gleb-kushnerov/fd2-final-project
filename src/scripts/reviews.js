@@ -1,7 +1,7 @@
 'use strict';
 
 class Reviews {
-    reviewsEl = document.createDocumentFragment();
+    reviewsEl = document.createElement('section');
     clients = new ReviewsClients();
     call = new ReviewsCall();
     constructor() {
