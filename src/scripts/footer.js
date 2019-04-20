@@ -6,7 +6,7 @@ class Footer extends MainElementsParent {
     constructor() {
         super();
         this.containerEL.classList.add('container');
-        this.loadContent('server/footer-content.html', 'text')
+        this.loadContent('content/footer-content.html', 'text')
             .then(result => this.containerEL.insertAdjacentHTML('afterbegin', result));
     }
 }

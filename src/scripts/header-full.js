@@ -21,20 +21,35 @@ class HeaderFull {
 
 class HeaderLogo extends MainElementsParent{
     logoEl = document.createElement('div');
+
     constructor() {
         super();
         this.logoEl.classList.add('logo');
-        this.loadContent('server/logo-content.html', 'text')
+        this.loadContent('content/logo-content.html', 'text')
             .then(result => this.logoEl.innerHTML = result);
+        this.logoEl.addEventListener('click', this);
+    }
+
+    handleEvent(event) {
+        let logo = event.target.closest('.logo');
+        if (logo) {
+            headerMainEl.innerHTML = '';
+            sectionMainContentEl.innerHTML = '';
+            headerMainEl.append(headerEl.mainContentEl);
+            sectionMainContentEl.append(mainContentEl.cabInfoEl);
+        }
     }
 }
 
 class HeaderNav {
     navEl = document.createElement('nav');
     ulEL = document.createElement('ul');
+
     constructor() {
         this.navEl.append(this.createMenu());
+        this.navEl.addEventListener('click', this);
     }
+
     createMenu() {
         let listArr = ['Home','Features','Order now','Reviews'];
         this.ulEL.append(listArr.reduce((fragment, el) => {
@@ -50,21 +65,34 @@ class HeaderNav {
         );
         return this.ulEL;
     }
-    // handleEvent (event) {
-    //     switch (event.type) {
-    //         case 'click':
-    //             if (this.logoEl) {
-    //                 console.log(event.target);
-    //             } else if (event.target.closest('li').dataset.linkName === 'Features') {
-    //                 event.preventDefault();
-    //                 sectionMainContentEl.textContent = '';
-    //                 featuresEl = new Features();
-    //                 sectionMainContentEl.append(featuresEl.mainContentEl);
-    //             }
-    //     }
-    // }
-}
 
+    handleEvent (event) {
+        let liEl = event.target.closest('li');
+        event.preventDefault();
+        if (liEl.dataset.linkName === 'Home') {
+            headerMainEl.innerHTML = '';
+            sectionMainContentEl.innerHTML = '';
+            headerMainEl.append(headerEl.mainContentEl);
+            sectionMainContentEl.append(mainContentEl.cabInfoEl);
+        } else if (liEl.dataset.linkName === 'Features') {
+            sectionMainContentEl.innerHTML = '';
+            headerMainEl.innerHTML = '';
+            let featuresEL = new Features(),
+                headerMiniEl = new HeaderMini();
+            headerMainEl.append(headerMiniEl.mainContentEl);
+            sectionMainContentEl.append(featuresEL.mainContentEl);
+        } else if (liEl.dataset.linkName === 'Order now') {
+
+        } else if (liEl.dataset.linkName === 'Reviews') {
+            sectionMainContentEl.innerHTML = '';
+            headerMainEl.innerHTML = '';
+            let reviewsEL = new Reviews(),
+                headerMiniEl = new HeaderMini();
+            headerMainEl.append(headerMiniEl.mainContentEl);
+            sectionMainContentEl.append(reviewsEL.reviewsEl);
+        }
+    }
+}
 
 class HeaderContent extends MainElementsParent{
     containerEl = document.createElement('div');
@@ -74,7 +102,7 @@ class HeaderContent extends MainElementsParent{
         super();
         this.containerEl.classList.add('container');
         this.imageContainerEl.classList.add('img-container');
-        this.loadContent('server/container-content.html', 'text')
+        this.loadContent('content/container-content.html', 'text')
             .then(result => this.containerEl.insertAdjacentHTML('afterbegin', result));
         this.containerEl.append(this.imageContainerEl);
         this.loadContent('img/header-car.jpg', 'blob')

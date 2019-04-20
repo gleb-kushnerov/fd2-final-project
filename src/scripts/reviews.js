@@ -16,7 +16,7 @@ class ReviewsClients extends MainElementsParent {
     constructor() {
         super();
         this.clientsEl.classList.add('clients');
-        this.loadContent('server/reviews-clients-content.html', 'text')
+        this.loadContent('content/reviews-clients-content.html', 'text')
             .then(result => this.clientsEl.insertAdjacentHTML('afterbegin', result));
     }
 }
@@ -27,7 +27,7 @@ class ReviewsCall extends MainElementsParent {
     constructor() {
         super();
         this.callEl.classList.add('call');
-        this.loadContent('server/review-call-content.html', 'text')
+        this.loadContent('content/review-call-content.html', 'text')
             .then(result => this.callEl.insertAdjacentHTML('afterbegin', result));
     }
 }

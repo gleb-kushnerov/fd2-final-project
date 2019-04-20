@@ -32,7 +32,7 @@ header {
       p {
         margin: 0;
         font-size: 0.83em;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.23em;
         text-transform: uppercase;
       }
     }
@@ -93,7 +93,8 @@ header {
       text-transform: uppercase;
     }
 
-    img {
+    .img-container {
+      height: 484px;
       margin-bottom: -160px;
     }
   }

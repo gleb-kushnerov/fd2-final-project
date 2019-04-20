@@ -1,7 +1,7 @@
 'use strict';
 
 class Features{
-    mainContentEl = document.createDocumentFragment();
+    mainContentEl = document.createElement('section');
     features = new FeaturesList();
     download = new FeaturesDownload();
     constructor() {
@@ -21,7 +21,7 @@ class FeaturesList extends MainElementsParent {
         this.containerEl.classList.add('container');
         this.buttonEl.classList.add('btn');
         this.featuresListEL.append(this.containerEl);
-        this.loadContent('server/features-content.html', 'text')
+        this.loadContent('content/features-content.html', 'text')
             .then(result => this.containerEl.insertAdjacentHTML('afterbegin', result));
         this.buttonEl.setAttribute('type', 'button');
         this.buttonEl.textContent = 'Book a cab';
@@ -38,7 +38,7 @@ class FeaturesDownload extends MainElementsParent {
         this.featuresDownloadEl.classList.add('download');
         this.containerEl.classList.add('container');
         this.featuresDownloadEl.append(this.containerEl);
-        this.loadContent('server/features-download-content.html', 'text')
+        this.loadContent('content/features-download-content.html', 'text')
             .then((result) => {
                 this.containerEl.insertAdjacentHTML('afterbegin', result);
                 this.googlePlaylinkEl = document.getElementById('google-play-link');

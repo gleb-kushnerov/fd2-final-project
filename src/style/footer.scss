@@ -42,8 +42,29 @@ footer {
           flex: 0 0 auto;
           display: block;
           width: 26px;
-          height: 20px;
-          background-color: var(--orange-color);
+          height: 26px;
+          background-image: url("../img/sprite.png");
+          transition: opacity .3s ease, transform .2s ease;
+
+          &:hover {
+            opacity: 0.5;
+          }
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        .social-1 {
+          background-position: -20px -232px;
+        }
+
+        .social-2 {
+          background-position: -20px -273px;
+        }
+
+        .social-3 {
+          background-position: -19px -313px;
         }
       }
     }
@@ -58,7 +79,24 @@ footer {
         display: block;
         width: 25px;
         height: 30px;
-        background-color: var(--orange-color);
+        background-image: url("../img/sprite.png");
+        transition: opacity .3s ease, transform .2s ease;
+
+        &:hover {
+          opacity: 0.5;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+
+      .android {
+        background-position: -19px -354px;
+      }
+
+      .ios {
+        background-position: -19px -405px;
       }
     }
 
@@ -69,10 +107,27 @@ footer {
         margin-bottom: 20px;
 
         .ico-container {
+          flex: 0 0 auto;
           margin-right: 25px;
           width: 20px;
           height: 25px;
-          background-color: var(--orange-color);
+          background-image: url("../img/sprite.png");
+        }
+
+        .ico-container-1 {
+          background-position: -18px -588px;
+        }
+
+        .ico-container-2 {
+          background-position: -18px -453px;
+        }
+
+        .ico-container-3 {
+          background-position: -18px -500px;
+        }
+
+        .ico-container-4 {
+          background-position: -16px -548px;
         }
 
         p {
