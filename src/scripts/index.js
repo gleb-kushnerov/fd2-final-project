@@ -1,4 +1,3 @@
-'use strict';
 
 let headerEl = new HeaderFull(),
     mainContentEl = new CabInfo(),

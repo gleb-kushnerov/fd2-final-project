@@ -1,4 +1,4 @@
-'use strict';
+
 
 class CabInfo {
     cabInfoEl = document.createElement('section');
@@ -62,6 +62,7 @@ class Form {
     startInputEl = document.createElement('input');
     endInputEl = document.createElement('input');
     selectEl = document.createElement('select');
+    storage = new OrderStorage();
     constructor() {
         this.formContentEl.classList.add('form');
         this.formHeaderEl.classList.add('form-header');
@@ -98,12 +99,34 @@ class Form {
         this.endInputEl.setAttribute('placeholder', 'End');
         this.endInputEl.setAttribute('name', 'end');
         this.formLineEl3.append(this.endInputEl);
+        this.selectEl.setAttribute('name', 'class');
         this.selectEl.innerHTML = `<option value="1">Choose Class</option>
                         <option value="economy">Economy</option>
                         <option value="standard">Standard</option>
                         <option value="business">Business</option>`;
         this.formLineEl4.append(this.selectEl);
         this.formContentEl.append(this.formEl);
+        this.submitBtnEl.addEventListener('click', this);
+        this.storage.init();
+    }
+
+    handleEvent(event) {
+        event.preventDefault();
+        this.makeOrder();
+    }
+
+    async makeOrder() {
+        let form = new FormData(this.formEl),
+            orderInfo = {
+                name: form.get('name'),
+                phone: form.get('phone'),
+                date: new Date(form.get('when')),
+                time: new Date(form.get('time')),
+                start: form.get('start'),
+                end: form.get('end'),
+                class: form.get('class')
+            };
+        this.storage.add(orderInfo);
     }
 }
 
