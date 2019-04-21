@@ -1,6 +1,6 @@
-'use strict';
+import {HeaderLogo, HeaderNav} from "./header-full.js";
 
-class HeaderMini {
+export class HeaderMini {
     mainContentEl = document.createElement('section');
     headerEl = document.createElement('div');
     logo = new HeaderLogo();

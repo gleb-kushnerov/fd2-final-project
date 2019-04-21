@@ -1,6 +1,11 @@
+import {MainElementsParent} from "./main-elements-parent.js";
+import {headerMainEl, sectionMainContentEl} from "./index.js";
+import {Features} from "./features.js";
+import {HeaderMini} from "./header-mini.js";
+import {OrderStorage} from "./indexedDb.js";
 
 
-class CabInfo {
+export class CabInfo {
     cabInfoEl = document.createElement('section');
     containerEl = document.createElement('div');
     aboutCab = new AboutCab();
@@ -16,7 +21,7 @@ class CabInfo {
 }
 
 
-class AboutCab extends MainElementsParent {
+export class AboutCab extends MainElementsParent {
     aboutCabEl = document.createElement('div');
     buttonEl = document.createElement('button');
 
@@ -33,8 +38,8 @@ class AboutCab extends MainElementsParent {
     }
 
     handleEvent(event) {
-        let readMorebtn = event.target.closest('.btn');
-        if (readMorebtn) {
+        let readMoreBtn = event.target.closest('.btn');
+        if (readMoreBtn) {
             sectionMainContentEl.innerHTML = '';
             headerMainEl.innerHTML = '';
             let featuresEL = new Features(),
@@ -46,7 +51,7 @@ class AboutCab extends MainElementsParent {
 }
 
 
-class Form {
+export class Form {
     formContentEl = document.createElement('div');
     formHeaderEl = document.createElement('div');
     formEl = document.createElement('form');
@@ -66,8 +71,58 @@ class Form {
     constructor() {
         this.formContentEl.classList.add('form');
         this.formHeaderEl.classList.add('form-header');
-        this.formHeaderEl.innerHTML = '<h2>book a <span>cab</span></h2>';
         this.formContentEl.append(this.formHeaderEl);
+        this.storage.init()
+            .then(() => this.storage.getAll())
+            .then(orders => {
+                if (orders.length === 0) {
+                    this.createForm();
+                } else {
+                    this.createOrderInfo(orders);
+                }
+            });
+    }
+
+    handleEvent(event) {
+        event.preventDefault();
+        this.makeOrder();
+        this.formEl.remove();
+        this.storage.getAll()
+            .then(orders => this.createOrderInfo(orders));
+    }
+
+    async makeOrder() {
+        let form = new FormData(this.formEl),
+            orderInfo = {
+                name: form.get('name'),
+                phone: form.get('phone'),
+                date: new Date(form.get('when')),
+                time: form.get('time'),
+                start: form.get('start'),
+                end: form.get('end'),
+                class: form.get('class')
+            };
+        this.storage.add(orderInfo);
+    }
+
+    createOrderInfo(orders) {
+        this.formHeaderEl.innerHTML = '<h2>order <span>info</span></h2>';
+        let lastOrder = orders[orders.length - 1];
+        let fragment = document.createDocumentFragment();
+        this.formLineEl1.classList.add('form-line-info');
+        this.formLineEl2.classList.add('form-line-info');
+        this.formLineEl3.classList.add('form-line-info');
+        this.formLineEl4.classList.add('form-line-info');
+        this.formLineEl1.textContent = `Name: ${lastOrder.name}`;
+        this.formLineEl2.innerHTML = `<span>When: ${new Intl.DateTimeFormat('ru').format(lastOrder.date)}</span> <span>Time: ${lastOrder.time}</span>`;
+        this.formLineEl3.innerHTML = `<span>Start: ${lastOrder.start}</span> <span>End: ${lastOrder.end}</span>`;
+        this.formLineEl4.textContent = `Class: ${lastOrder.class}`;
+        fragment.append(this.formLineEl1, this.formLineEl2, this.formLineEl3, this.formLineEl4);
+        this.formContentEl.append(fragment);
+    }
+
+    createForm() {
+        this.formHeaderEl.innerHTML = '<h2>book a <span>cab</span></h2>';
         this.formLineEl1.classList.add('form-line');
         this.formLineEl2.classList.add('form-line');
         this.formLineEl3.classList.add('form-line');
@@ -107,26 +162,6 @@ class Form {
         this.formLineEl4.append(this.selectEl);
         this.formContentEl.append(this.formEl);
         this.submitBtnEl.addEventListener('click', this);
-        this.storage.init();
-    }
-
-    handleEvent(event) {
-        event.preventDefault();
-        this.makeOrder();
-    }
-
-    async makeOrder() {
-        let form = new FormData(this.formEl),
-            orderInfo = {
-                name: form.get('name'),
-                phone: form.get('phone'),
-                date: new Date(form.get('when')),
-                time: new Date(form.get('time')),
-                start: form.get('start'),
-                end: form.get('end'),
-                class: form.get('class')
-            };
-        this.storage.add(orderInfo);
     }
 }
 

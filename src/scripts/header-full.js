@@ -1,6 +1,11 @@
-'use strict';
+import {MainElementsParent} from "./main-elements-parent.js";
+import {headerMainEl, sectionMainContentEl} from "./index.js";
+import {headerEl, mainContentEl} from "./index.js";
+import {Features} from "./features.js";
+import {HeaderMini} from "./header-mini.js";
+import {Reviews} from "./reviews.js";
 
-class HeaderFull {
+export class HeaderFull {
     mainContentEl = document.createElement('section');
     headerEl = document.createElement('div');
     logo = new HeaderLogo();
@@ -19,7 +24,7 @@ class HeaderFull {
 
 
 
-class HeaderLogo extends MainElementsParent{
+export class HeaderLogo extends MainElementsParent{
     logoEl = document.createElement('div');
 
     constructor() {
@@ -41,7 +46,7 @@ class HeaderLogo extends MainElementsParent{
     }
 }
 
-class HeaderNav {
+export class HeaderNav {
     navEl = document.createElement('nav');
     ulEL = document.createElement('ul');
 
@@ -94,7 +99,7 @@ class HeaderNav {
     }
 }
 
-class HeaderContent extends MainElementsParent{
+export class HeaderContent extends MainElementsParent{
     containerEl = document.createElement('div');
     imageContainerEl = document.createElement('div');
 

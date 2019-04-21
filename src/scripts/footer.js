@@ -1,6 +1,6 @@
-'use strict';
+import {MainElementsParent} from "./main-elements-parent.js";
 
-class Footer extends MainElementsParent {
+export class Footer extends MainElementsParent {
     containerEL = document.createElement('div');
 
     constructor() {

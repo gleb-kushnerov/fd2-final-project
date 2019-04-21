@@ -1,6 +1,6 @@
-'use strict';
+import {MainElementsParent} from "./main-elements-parent.js";
 
-class Reviews {
+export class Reviews {
     reviewsEl = document.createElement('section');
     clients = new ReviewsClients();
     call = new ReviewsCall();
@@ -11,7 +11,7 @@ class Reviews {
 }
 
 
-class ReviewsClients extends MainElementsParent {
+export class ReviewsClients extends MainElementsParent {
     clientsEl = document.createElement('section');
     constructor() {
         super();
@@ -22,7 +22,7 @@ class ReviewsClients extends MainElementsParent {
 }
 
 
-class ReviewsCall extends MainElementsParent {
+export class ReviewsCall extends MainElementsParent {
     callEl = document.createElement('section');
     constructor() {
         super();

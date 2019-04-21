@@ -1,7 +1,7 @@
 const DB_NAME = 'ORDERS';
 const ITEMS_STORAGE_NAME = 'ITEMS';
 
-class OrderStorage {
+export class OrderStorage {
     db;
 
     init () {
@@ -24,6 +24,16 @@ class OrderStorage {
             let transaction = this.db.transaction([ITEMS_STORAGE_NAME], 'readwrite');
             let objectStore = transaction.objectStore(ITEMS_STORAGE_NAME);
             let request = objectStore.add(item);
+            request.onerror = err => reject(err);
+            request.onsuccess = () => resolve(request.result);
+        });
+    }
+
+    getAll () {
+        return new Promise((resolve, reject) => {
+            let transaction = this.db.transaction([ITEMS_STORAGE_NAME], 'readonly');
+            let storage = transaction.objectStore(ITEMS_STORAGE_NAME);
+            let request = storage.getAll();
             request.onerror = err => reject(err);
             request.onsuccess = () => resolve(request.result);
         });

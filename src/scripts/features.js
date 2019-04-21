@@ -1,6 +1,6 @@
-'use strict';
+import {MainElementsParent} from "./main-elements-parent.js";
 
-class Features{
+export class Features{
     mainContentEl = document.createElement('section');
     features = new FeaturesList();
     download = new FeaturesDownload();
@@ -11,7 +11,7 @@ class Features{
 }
 
 
-class FeaturesList extends MainElementsParent {
+export class FeaturesList extends MainElementsParent {
     featuresListEL = document.createElement('section');
     containerEl = document.createElement('div');
     buttonEl = document.createElement('button');
@@ -30,7 +30,7 @@ class FeaturesList extends MainElementsParent {
 }
 
 
-class FeaturesDownload extends MainElementsParent {
+export class FeaturesDownload extends MainElementsParent {
     featuresDownloadEl = document.createElement('section');
     containerEl = document.createElement('div');
     constructor() {
