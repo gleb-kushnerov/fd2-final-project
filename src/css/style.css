@@ -6,7 +6,7 @@
 header {
   box-sizing: border-box;
   padding: 40px 0;
-  background: url("../img/bg-header.jpg") no-repeat top center;
+  background: url("../assets/images/bg-header.jpg") no-repeat top center;
   background-size: cover; }
   header .header {
     box-sizing: border-box;
@@ -16,7 +16,8 @@ header {
     header .header .logo {
       color: #fff;
       font-weight: bold;
-      flex: 0 0 auto; }
+      flex: 0 0 auto;
+      text-decoration: none; }
       header .header .logo:hover {
         cursor: pointer; }
       header .header .logo h1 {
@@ -180,7 +181,7 @@ header {
 .features {
   box-sizing: border-box;
   padding: var(--top-padding) 0 var(--bottom-padding) 0;
-  background: url("../img/features-bg.jpg") no-repeat top center;
+  background: url("../assets/images/features-bg.jpg") no-repeat top center;
   background-size: cover; }
   .features h1 {
     color: #fff; }
@@ -204,7 +205,7 @@ header {
         height: 70px;
         background-color: var(--orange-color);
         border-radius: 50%;
-        background-image: url("../img/sprite.png"); }
+        background-image: url("../assets/images/sprite.png"); }
       .features .features-main-content .features-item .ico-container-1 {
         background-position: 1px 22px; }
       .features .features-main-content .features-item .ico-container-2 {
@@ -241,7 +242,7 @@ header {
 .clients {
   box-sizing: border-box;
   padding: var(--top-padding) 0 var(--bottom-padding) 0;
-  background: url("../img/clients-bg.jpg") no-repeat top center;
+  background: url("../assets/images/clients-bg.jpg") no-repeat top center;
   background-size: cover; }
   .clients h1 {
     color: #fff; }
@@ -284,7 +285,7 @@ header {
 footer {
   box-sizing: border-box;
   padding: var(--top-padding) 0 var(--bottom-padding) 0;
-  background: url("../img/footer-bg.jpg") no-repeat top center;
+  background: url("../assets/images/footer-bg.jpg") no-repeat top center;
   background-size: cover; }
   footer .container {
     display: flex;
@@ -314,7 +315,7 @@ footer {
         display: block;
         width: 26px;
         height: 26px;
-        background-image: url("../img/sprite.png");
+        background-image: url("../assets/images/sprite.png");
         transition: opacity .3s ease, transform .2s ease; }
         footer .container .about .social-links a:hover {
           opacity: 0.5; }
@@ -335,7 +336,7 @@ footer {
         display: block;
         width: 25px;
         height: 30px;
-        background-image: url("../img/sprite.png");
+        background-image: url("../assets/images/sprite.png");
         transition: opacity .3s ease, transform .2s ease; }
         footer .container .download-footer-item a:hover {
           opacity: 0.5; }
@@ -353,7 +354,7 @@ footer {
         margin-right: 25px;
         width: 20px;
         height: 25px;
-        background-image: url("../img/sprite.png"); }
+        background-image: url("../assets/images/sprite.png"); }
       footer .container .contact .contact-item .ico-container-1 {
         background-position: -18px -588px; }
       footer .container .contact .contact-item .ico-container-2 {

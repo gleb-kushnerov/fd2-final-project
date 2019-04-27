@@ -1,0 +1,33 @@
+.clients {
+  box-sizing: border-box;
+  padding: var(--top-padding) 0 var(--bottom-padding) 0;
+  background: url("../assets/images/clients-bg.jpg") no-repeat top center;
+  background-size: cover; }
+  .clients h1 {
+    color: #fff; }
+  .clients .clients-main-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px; }
+    .clients .clients-main-content .clients-item {
+      box-sizing: border-box;
+      padding: 30px;
+      flex: 0 0 580px;
+      background-color: #000;
+      text-align: left;
+      border-radius: 30px; }
+      .clients .clients-main-content .clients-item p {
+        color: #fff;
+        margin-top: 0; }
+      .clients .clients-main-content .clients-item .client-container {
+        width: 235px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; }
+        .clients .clients-main-content .clients-item .client-container img {
+          flex: 0 0 auto; }
+        .clients .clients-main-content .clients-item .client-container .info {
+          height: 55px; }
+          .clients .clients-main-content .clients-item .client-container .info p {
+            text-transform: uppercase;
+            margin: 0; }

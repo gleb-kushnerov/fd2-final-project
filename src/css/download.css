@@ -1,0 +1,19 @@
+.download {
+  box-sizing: border-box;
+  padding: var(--top-padding) 0 0 0; }
+  .download .download-main-content {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between; }
+    .download .download-main-content .app-info {
+      flex: 0 0 440px;
+      text-align: left; }
+      .download .download-main-content .app-info h4 {
+        text-transform: none;
+        color: #000; }
+      .download .download-main-content .app-info .link-container {
+        margin-top: 55px;
+        display: flex;
+        justify-content: space-between; }
+    .download .download-main-content .download-image-container {
+      height: 466px; }

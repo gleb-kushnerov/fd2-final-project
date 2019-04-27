@@ -138,6 +138,7 @@ export class Form {
         this.formLineEl1.append(this.nameInputEl);
         this.phoneInputEl.setAttribute('type', 'text');
         this.phoneInputEl.setAttribute('placeholder', 'Phone');
+        this.phoneInputEl.setAttribute('pattern', '/^4/');
         this.phoneInputEl.setAttribute('name', 'phone');
         this.formLineEl1.append(this.phoneInputEl);
         this.whenInputEl.setAttribute('type', 'date');
