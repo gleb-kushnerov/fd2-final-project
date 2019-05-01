@@ -1,0 +1,44 @@
+.tariffs {
+  box-sizing: border-box;
+  padding: var(--top-padding) 0 var(--bottom-padding) 0;
+
+  .tariffs-main-content {
+    margin-top: 130px;
+    display: flex;
+    justify-content: space-between;
+
+    .tariffs-item {
+      flex: 0 0 370px;
+      background-color: #f5f4f2;
+      transition: background-color .3s ease;
+
+      img {
+        margin-top: -85px;
+      }
+
+      h1 {
+        color: var(--orange-color);
+        transition: color .3s ease;
+      }
+
+      .btn {
+        margin: 35px 0 25px 0;
+        transition: all .3s ease;
+      }
+      
+      &:hover {
+        background-color: var(--orange-color);
+        cursor: pointer;
+
+        h1 {
+          color: #000;
+        }
+        
+        .btn {
+          background-color: #000;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
