@@ -22,14 +22,20 @@
         <div class="container" id="tariffs-container">
             <div class="tariffs-container">
                 <h1>step three</h1>
-                <div class="nameplate">
+                <div class="nameplate" id="nameplate-three">
                     <div class="nameplate-group">
                         <label for="tariffs-date">Choose date</label>
-                        <input type="date" id="tariffs-date">
+                        <div class="input-container">
+                            <input type="date" id="tariffs-date" data-name="date">
+                            <span></span>
+                        </div>
                     </div>
                     <div class="nameplate-group">
                         <label for="tariffs-time">Choose time</label>
-                        <input type="time" id="tariffs-time">
+                        <div class="input-container">
+                            <input type="time" id="tariffs-time" data-name="time">
+                            <span></span>
+                        </div>
                     </div>
                     <a href="#order-now/step-4">
                         <button class="btn" id="step-3-btn">Next</button>

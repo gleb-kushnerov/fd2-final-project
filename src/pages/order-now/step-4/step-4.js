@@ -1,6 +1,7 @@
 import {Page} from "../../../scripts/page.js";
 import {orderInfo} from "../../../scripts/order-info.js";
 import {OrderStorage} from "../../../scripts/indexedDb.js";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation.js";
 
 export class Step4Order extends Page {
     storage = new OrderStorage();
@@ -22,16 +23,32 @@ export class Step4Order extends Page {
     }
 
     afterRender() {
-        let nextStepBtnEl = document.getElementById('step-4-btn');
-        nextStepBtnEl.addEventListener('click', this);
+        let nameplateEl = document.getElementById('nameplate-four');
+        nameplateEl.addEventListener('click', this);
+        nameplateEl.addEventListener('input', this);
     }
 
-    handleEvent() {
-        let startInputEl = document.getElementById('tariffs-start'),
-            endInputEl = document.getElementById('tariffs-end');
-        orderInfo.start = startInputEl.value;
-        orderInfo.end = endInputEl.value;
-        this.storage.add(orderInfo);
+    handleEvent(event) {
+       switch (event.type) {
+           case 'click':
+               let btnEl = event.target.closest('a'),
+                   inputStartEl = document.getElementById('tariffs-start'),
+                   inputEndEl = document.getElementById('tariffs-end');
+               if (btnEl) {
+                   event.preventDefault();
+                   if (inputStartEl.value.length !== 0 && inputEndEl.value.length !== 0) {
+                       orderInfo.start = inputStartEl.value;
+                       orderInfo.end = inputEndEl.value;
+                       this.storage.add(orderInfo);
+                       location.href = btnEl.href;
+                   } else {
+                       lengthAndPatternValidation();
+                   }
+               }
+           case 'input': {
+               removeErrorPlate();
+           }
+       }
     }
 
     destroy() {
