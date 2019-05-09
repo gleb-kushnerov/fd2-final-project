@@ -123,27 +123,57 @@ header {
           width: 100%;
           display: flex;
           justify-content: space-between; }
-          .cab-info .container .form form .form-line input {
-            height: 50px;
-            flex: 0 0 auto;
-            width: 48%;
-            border: none;
-            border-bottom: 2px solid #e4e4e4;
-            font-size: 1.1em;
-            color: #000; }
-            .cab-info .container .form form .form-line input::-webkit-input-placeholder {
-              color: #000;
-              opacity: 1;
-              transition: opacity 0.3s ease; }
-            .cab-info .container .form form .form-line input:focus::-webkit-input-placeholder {
-              opacity: 0;
-              transition: opacity 0.3s ease; }
-          .cab-info .container .form form .form-line select {
-            height: 50px;
+          .cab-info .container .form form .form-line .input-container {
+            width: 48%; }
+            .cab-info .container .form form .form-line .input-container input {
+              height: 50px;
+              flex: 0 0 auto;
+              width: 100%;
+              border: none;
+              border-bottom: 2px solid #e4e4e4;
+              font-size: 1.1em;
+              color: #000; }
+              .cab-info .container .form form .form-line .input-container input::-webkit-input-placeholder {
+                color: #000;
+                opacity: 1;
+                transition: opacity 0.3s ease; }
+              .cab-info .container .form form .form-line .input-container input:focus::-webkit-input-placeholder {
+                opacity: 0;
+                transition: opacity 0.3s ease; }
+            .cab-info .container .form form .form-line .input-container .error {
+              display: flex;
+              align-items: center;
+              padding-left: 5px;
+              font-size: 0.8em;
+              color: #fff;
+              box-sizing: border-box;
+              width: 100%;
+              height: 20px;
+              border-radius: 0 0 5px 5px;
+              text-align: left;
+              background-color: #ff2c42; }
+          .cab-info .container .form form .form-line .select-container {
             width: 100%;
-            border: none;
-            border-bottom: 2px solid #e4e4e4;
-            font-size: 1.1em; }
+            display: flex;
+            flex-direction: column; }
+            .cab-info .container .form form .form-line .select-container select {
+              height: 50px;
+              width: 100%;
+              border: none;
+              border-bottom: 2px solid #e4e4e4;
+              font-size: 1.1em; }
+            .cab-info .container .form form .form-line .select-container .error {
+              display: flex;
+              align-items: center;
+              padding-left: 5px;
+              font-size: 0.8em;
+              color: #fff;
+              box-sizing: border-box;
+              width: 100%;
+              height: 20px;
+              border-radius: 0 0 5px 5px;
+              text-align: left;
+              background-color: #ff2c42; }
         .cab-info .container .form form .btn {
           width: 100%;
           color: #fff;

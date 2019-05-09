@@ -70,36 +70,78 @@
           display: flex;
           justify-content: space-between;
 
-          input {
-            height: 50px;
-            flex: 0 0 auto;
+          .input-container {
             width: 48%;
-            border: none;
-            border-bottom: 2px solid #e4e4e4;
-            font-size: 1.1em;
-            color: #000;
 
-            &::-webkit-input-placeholder {
+            input {
+              height: 50px;
+              flex: 0 0 auto;
+              width: 100%;
+              border: none;
+              border-bottom: 2px solid #e4e4e4;
+              font-size: 1.1em;
               color: #000;
-              opacity: 1;
-              transition: opacity 0.3s ease;
-            }
 
-            &:focus {
               &::-webkit-input-placeholder {
-                opacity: 0;
+                color: #000;
+                opacity: 1;
                 transition: opacity 0.3s ease;
               }
+
+              &:focus {
+                &::-webkit-input-placeholder {
+                  opacity: 0;
+                  transition: opacity 0.3s ease;
+                }
+              }
+            }
+
+            .error {
+              display: flex;
+              align-items: center;
+              padding-left: 5px;
+              font-size: 0.8em;
+              color: #fff;
+              box-sizing: border-box;
+              width: 100%;
+              height: 20px;
+              border-radius: 0 0 5px 5px;
+              text-align: left;
+              background-color: #ff2c42;
             }
           }
 
-          select {
-            height: 50px;
+          .select-container {
             width: 100%;
-            border: none;
-            border-bottom: 2px solid #e4e4e4;
-            font-size: 1.1em;
+            display: flex;
+            flex-direction: column;
+
+            select {
+              height: 50px;
+              width: 100%;
+              border: none;
+              border-bottom: 2px solid #e4e4e4;
+              font-size: 1.1em;
+            }
+
+            .error {
+              display: flex;
+              align-items: center;
+              padding-left: 5px;
+              font-size: 0.8em;
+              color: #fff;
+              box-sizing: border-box;
+              width: 100%;
+              height: 20px;
+              border-radius: 0 0 5px 5px;
+              text-align: left;
+              background-color: #ff2c42;
+            }
           }
+
+
+
+
         }
 
         .btn {

@@ -1,5 +1,7 @@
 import {Page} from "../../scripts/page.js";
 import {OrderStorage} from "../../scripts/indexedDb.js";
+import {nameRegExp, phoneRegExp} from "../../scripts/regExp.js";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation.js";
 
 export class Home extends Page {
     storage = new OrderStorage();
@@ -23,10 +25,11 @@ export class Home extends Page {
 
     afterRender() {
         let headerEl = document.getElementById('img-container'),
-            submitBtn = document.getElementById('form-submit-btn');
+            formContainerEl = document.getElementById('form-container');
 
         headerEl.append(this.resolvedData.image);
-        submitBtn.addEventListener('click', this);
+        formContainerEl.addEventListener('click', this);
+        formContainerEl.addEventListener('input', this);
         this.storage.getAll()
                 .then(async orders => {
                         if (orders.length !== 0) {
@@ -36,14 +39,34 @@ export class Home extends Page {
     }
 
     handleEvent(event) {
-        event.preventDefault();
-        this.makeOrder();
-        this.storage.getAll()
-            .then(async orders => {
-                    this.createOrderInfoPlate(orders)
-            });
-        let submitBtn = document.getElementById('form-submit-btn');
-        submitBtn.removeEventListener('click', this);
+       switch (event.type) {
+           case 'click':
+               let submitBtnEl = event.target.closest('#form-submit-btn');
+               if (submitBtnEl) {
+                   event.preventDefault();
+                   let form = new FormData(document.forms.namedItem('book-cab-form')),
+                       test = form.get('name').length !== 0 && form.get('phone').length !== 0 && form.get('when').length !== 0 && form.get('time').length !== 0 && form.get('start').length !== 0 && form.get('end').length !== 0 && form.get('class') !== '1' && nameRegExp.test(form.get('name')) && phoneRegExp.test(form.get('phone'));
+                   if (test) {
+                       this.makeOrder();
+                       document.forms.namedItem('book-cab-form').reset();
+                   } else {
+                       lengthAndPatternValidation();
+                       let selectEl = document.getElementById('select-class');
+                       if (selectEl.value === '1') {
+                           selectEl.nextElementSibling.classList.add('error');
+                           selectEl.nextElementSibling.textContent = 'This field can\'t be empty';
+                       }
+                   }
+               }
+           case 'input':
+               removeErrorPlate();
+               let selectEl = event.target.closest('select');
+               if (selectEl) {
+                   let errorSpanEl = selectEl.nextElementSibling;
+                   errorSpanEl.classList.remove('error');
+                   errorSpanEl.textContent = '';
+               }
+       }
     }
 
     createOrderInfoPlate(orders) {
@@ -86,9 +109,10 @@ export class Home extends Page {
     }
 
     destroy() {
-        let submitBtn = document.getElementById('form-submit-btn');
-        if (submitBtn) {
-            submitBtn.removeEventListener('click', this);
+        let formContainerEl = document.getElementById('form-container');
+        if (formContainerEl) {
+            formContainerEl.removeEventListener('click', this);
+            formContainerEl.removeEventListener('input', this);
         }
         super.destroy();
     }
