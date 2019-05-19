@@ -16,7 +16,14 @@ export class Step3Order extends Page{
     }
 
     afterRender() {
-        let nameplateEl = document.getElementById('nameplate-three');
+        let nameplateEl = document.getElementById('nameplate-three'),
+            dateInputEl = document.getElementById('tariffs-date'),
+            regExp = /-(\d)-/,
+            dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
+                .replace(/\. /g, '-')
+                .replace(/\./, '')
+                .replace(regExp, '-0$1-');
+        dateInputEl.setAttribute('min', dateValueStr);
         nameplateEl.addEventListener('click', this);
         nameplateEl.addEventListener('input', this);
     }

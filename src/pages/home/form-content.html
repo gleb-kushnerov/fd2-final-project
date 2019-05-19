@@ -1,0 +1,48 @@
+<div class="form-header">
+    <h2>book a <span>cab</span></h2>
+</div>
+<form name="book-cab-form">
+    <div class="form-line">
+        <div class="input-container">
+            <input type="text" placeholder="Name" name="name" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
+                   data-name="name">
+            <span></span>
+        </div>
+        <div class="input-container">
+            <input type="tel" placeholder="Phone" name="phone" pattern="^\+375(?:29|44|33)\d{7}$|^8(?:029|044|033)\d{7}$|^\+375(?:29|44|33)-\d{3}-\d{2}-\d{2}$" data-name="phone number">
+            <span></span>
+        </div>
+    </div>
+    <div class="form-line">
+        <div class="input-container">
+            <input type="date" placeholder="When" name="when" data-name="date">
+            <span></span>
+        </div>
+        <div class="input-container">
+            <input type="time" placeholder="Time" name="time" data-name="time">
+            <span></span>
+        </div>
+    </div>
+    <div class="form-line">
+        <div class="input-container">
+            <input type="text" placeholder="Start" name="start">
+            <span></span>
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="End" name="end">
+            <span></span>
+        </div>
+    </div>
+    <div class="form-line">
+        <div class="select-container">
+            <select name="class" id="select-class">
+                <option value="1">Choose Class</option>
+                <option value="economy">Economy</option>
+                <option value="standard">Standard</option>
+                <option value="business">Business</option>
+            </select>
+            <span></span>
+        </div>
+    </div>
+    <button type="submit" class="btn" id="form-submit-btn">Submit</button>
+</form>

@@ -5,5 +5,11 @@ export let orderInfo = {
     time: null,
     start: null,
     end: null,
-    class: null
+    class: null,
+    complete: false
+};
+
+export let paramsForTimeout = {
+    delay: null,
+    id: null
 };

@@ -2,6 +2,9 @@ import {Page} from "../../scripts/page.js";
 import {OrderStorage} from "../../scripts/indexedDb.js";
 import {nameRegExp, phoneRegExp} from "../../scripts/regExp.js";
 import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation.js";
+import {paramsForTimeout} from "../../scripts/order-info.js";
+import {restoreFormTimeout} from "../../scripts/functions.js";
+
 
 export class Home extends Page {
     storage = new OrderStorage();
@@ -23,32 +26,42 @@ export class Home extends Page {
         return homePage;
     }
 
-    afterRender() {
+    async afterRender() {
         let headerEl = document.getElementById('img-container'),
-            formContainerEl = document.getElementById('form-container');
-
+            formContainerEl = document.getElementById('form-container'),
+            dateInputEl = document.forms.namedItem('book-cab-form').elements.namedItem('when'),
+            regExp = /-(\d)-/;
+        let dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
+                .replace(/\. /g, '-')
+                .replace(/\./, '')
+                .replace(regExp, '-0$1-');
+        dateInputEl.setAttribute('min', dateValueStr);
         headerEl.append(this.resolvedData.image);
         formContainerEl.addEventListener('click', this);
         formContainerEl.addEventListener('input', this);
-        this.storage.getAll()
-                .then(async orders => {
-                        if (orders.length !== 0) {
-                            this.createOrderInfoPlate(orders)
-                        }
-                    });
+        let orders = await this.storage.getAll();
+        if (orders.length !== 0 && !orders[orders.length - 1].complete) {
+            this.createOrderInfoPlate(orders);
+        }
     }
 
-    handleEvent(event) {
+    async handleEvent(event) {
        switch (event.type) {
            case 'click':
-               let submitBtnEl = event.target.closest('#form-submit-btn');
+               let submitBtnEl = event.target.closest('#form-submit-btn'),
+                   formContainerEl = document.getElementById('form-container');
                if (submitBtnEl) {
                    event.preventDefault();
                    let form = new FormData(document.forms.namedItem('book-cab-form')),
                        test = form.get('name').length !== 0 && form.get('phone').length !== 0 && form.get('when').length !== 0 && form.get('time').length !== 0 && form.get('start').length !== 0 && form.get('end').length !== 0 && form.get('class') !== '1' && nameRegExp.test(form.get('name')) && phoneRegExp.test(form.get('phone'));
                    if (test) {
                        this.makeOrder();
-                       document.forms.namedItem('book-cab-form').reset();
+                       paramsForTimeout.formHtml = formContainerEl.innerHTML;
+                       let orders = await this.storage.getAll();
+                       this.createOrderInfoPlate(orders);
+                       if (orders) {
+                           restoreFormTimeout(orders);
+                       }
                    } else {
                        lengthAndPatternValidation();
                        let selectEl = document.getElementById('select-class');
@@ -103,7 +116,8 @@ export class Home extends Page {
                 time: form.get('time'),
                 start: form.get('start'),
                 end: form.get('end'),
-                class: form.get('class')
+                class: form.get('class'),
+                complete: false
             };
         this.storage.add(orderInfo);
     }

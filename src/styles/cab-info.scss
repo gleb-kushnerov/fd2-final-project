@@ -96,6 +96,28 @@
               }
             }
 
+            input[type="date"] {
+              position: relative;
+
+              &::-webkit-inner-spin-button {
+                display: none;
+              }
+
+              &::-webkit-calendar-picker-indicator {
+                opacity: 0;
+              }
+              &::before {
+                content: "";
+                background: url("../assets/images/calendar.svg") no-repeat top center;
+                display: block;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 3px;
+                top: 14px;
+              }
+            }
+
             .error {
               display: flex;
               align-items: center;

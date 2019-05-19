@@ -38,5 +38,18 @@ export class OrderStorage {
             request.onsuccess = () => resolve(request.result);
         });
     }
+
+    change (id) {
+        return new Promise((resolve, reject) => {
+            let transaction = this.db.transaction([ITEMS_STORAGE_NAME], 'readwrite');
+            let objectStore = transaction.objectStore(ITEMS_STORAGE_NAME);
+            let request = objectStore.get(id);
+            request.onerror = err => reject(err);
+            request.onsuccess = () => {
+                request.result.complete = true;
+                objectStore.put(request.result)
+            };
+        });
+    }
 }
 

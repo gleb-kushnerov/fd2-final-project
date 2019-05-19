@@ -2,6 +2,7 @@ import {Page} from "../../../scripts/page.js";
 import {orderInfo} from "../../../scripts/order-info.js";
 import {OrderStorage} from "../../../scripts/indexedDb.js";
 import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation.js";
+import {restoreFormTimeout} from "../../../scripts/functions.js";
 
 export class Step4Order extends Page {
     storage = new OrderStorage();
@@ -28,7 +29,7 @@ export class Step4Order extends Page {
         nameplateEl.addEventListener('input', this);
     }
 
-    handleEvent(event) {
+    async handleEvent(event) {
        switch (event.type) {
            case 'click':
                let btnEl = event.target.closest('a'),
@@ -40,6 +41,10 @@ export class Step4Order extends Page {
                        orderInfo.start = inputStartEl.value;
                        orderInfo.end = inputEndEl.value;
                        this.storage.add(orderInfo);
+                       let orders = await this.storage.getAll();
+                       if (orders) {
+                           restoreFormTimeout(orders);
+                       }
                        location.href = btnEl.href;
                    } else {
                        lengthAndPatternValidation();
