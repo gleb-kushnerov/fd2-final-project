@@ -1,22 +1,21 @@
-import {Page} from "../../scripts/page.js";
-import {OrderStorage} from "../../scripts/indexedDb.js";
-import {nameRegExp, phoneRegExp} from "../../scripts/regExp.js";
-import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation.js";
-import {paramsForTimeout} from "../../scripts/order-info.js";
-import {restoreFormTimeout} from "../../scripts/functions.js";
+import {Page} from "../../scripts/page";
+import {OrderStorage} from "../../scripts/indexedDb";
+import {nameRegExp, phoneRegExp} from "../../scripts/regExp";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation";
+import {paramsForTimeout} from "../../scripts/order-info";
+import {restoreFormTimeout} from "../../scripts/functions/functions";
 
 
 export class Home extends Page {
-    storage = new OrderStorage();
-
-    constructor() {
+        constructor() {
         super();
+        this.storage = new OrderStorage();
         this.storage.init()
     }
     async resolve () {
         return {
-            template: await fetch('pages/home/home.html').then(res => res.text()),
-            image: await this.loadImage('assets/images/header-car.jpg')
+            template: await fetch(require('./home-page.html')).then(res => res.text()),
+            image: await this.loadImage('./assets/images/header-car.jpg')
         };
     }
 

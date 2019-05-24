@@ -1,9 +1,9 @@
-import {Page} from "../../scripts/page.js";
+import {Page} from "../../scripts/page";
 
 export class Reviews extends Page{
     async resolve () {
         return {
-            template: await fetch('pages/reviews/reviews.html').then(res => res.text()),
+            template: await fetch(require('./reviews-page.html')).then(res => res.text()),
             image1: await this.loadImage('assets/images/clients-user-avatar.png'),
             image2: await this.loadImage('assets/images/clients-user-avatar.png'),
         };

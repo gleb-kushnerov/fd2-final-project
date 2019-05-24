@@ -1,11 +1,11 @@
-import {Home} from "../pages/home/home.js";
-import {Features} from "../pages/features/features.js";
-import {Reviews} from "../pages/reviews/reviews.js";
-import {OrderNow} from "../pages/order-now/order-now.js";
-import {Step2Order} from "../pages/order-now/step-2/step-2.js";
-import {Step3Order} from "../pages/order-now/step-3/step-3.js";
-import {Step4Order} from "../pages/order-now/step-4/step-4.js";
-import {SuccessPage} from "../pages/order-now/wait-for-your-cab/wait-for-your-cab.js";
+import {Home} from "../pages/home/home";
+import {Features} from "../pages/features/features";
+import {Reviews} from "../pages/reviews/reviews";
+import {OrderNow} from "../pages/order-now/order-now";
+import {Step2Order} from "../pages/order-now/step-2/step-2";
+import {Step3Order} from "../pages/order-now/step-3/step-3";
+import {Step4Order} from "../pages/order-now/step-4/step-4";
+import {SuccessPage} from "../pages/order-now/wait-for-your-cab/wait-for-your-cab";
 
 export const routes = [
     {

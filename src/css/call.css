@@ -1,8 +1,0 @@
-.call {
-  box-sizing: border-box;
-  padding: var(--top-padding) 0 var(--bottom-padding) 0;
-  background-color: var(--orange-color); }
-  .call h2 {
-    color: #000; }
-  .call h1 {
-    font-size: 4.26em; }

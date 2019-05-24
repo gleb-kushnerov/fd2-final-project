@@ -1,10 +1,10 @@
-import {Page} from "../../scripts/page.js";
-import {orderInfo} from "../../scripts/order-info.js";
+import {Page} from "../../scripts/page";
+import {orderInfo} from "../../scripts/order-info";
 
 export class OrderNow extends Page{
     async resolve () {
         return {
-            template: await fetch('pages/order-now/order-now.html').then(res => res.text()),
+            template: await fetch(require('./order-now-page.html')).then(res => res.text()),
             image1: await this.loadImage('assets/images/tariffs-car.png'),
             image2: await this.loadImage('assets/images/tariffs-car.png'),
             image3: await this.loadImage('assets/images/tariffs-car.png')

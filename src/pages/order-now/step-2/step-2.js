@@ -1,13 +1,13 @@
-import {Page} from "../../../scripts/page.js";
-import {orderInfo} from "../../../scripts/order-info.js";
-import {nameRegExp} from "../../../scripts/regExp.js";
-import {phoneRegExp} from "../../../scripts/regExp.js";
-import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation.js";
+import {Page} from "../../../scripts/page";
+import {orderInfo} from "../../../scripts/order-info";
+import {nameRegExp} from "../../../scripts/regExp";
+import {phoneRegExp} from "../../../scripts/regExp";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation";
 
 export class Step2Order extends Page{
     async resolve () {
         return {
-            template: await fetch('pages/order-now/step-2/step-2.html').then(res => res.text())
+            template: await fetch(require('./step-2-page.html')).then(res => res.text())
         };
     }
 

@@ -1,9 +1,9 @@
-import {paramsForTimeout} from "./order-info.js";
-import {OrderStorage} from "./indexedDb.js";
+import {paramsForTimeout} from "../order-info";
+import {OrderStorage} from "../indexedDb";
 
 export async function restoreForm() {
     let formContainerEl = document.getElementById('form-container'),
-        formHtml = await fetch('pages/home/form-content.html').then(res => res.text());
+        formHtml = await fetch(require('./form-content.html')).then(res => res.text());
     if (formHtml) {
         formContainerEl.innerHTML = formHtml;
     }

@@ -2,7 +2,10 @@ const DB_NAME = 'ORDERS';
 const ITEMS_STORAGE_NAME = 'ITEMS';
 
 export class OrderStorage {
-    db;
+
+    constructor() {
+        this.db;
+}
 
     init () {
         return new Promise((resolve, reject) => {

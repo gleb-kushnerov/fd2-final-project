@@ -1,19 +1,18 @@
-import {Page} from "../../../scripts/page.js";
-import {orderInfo} from "../../../scripts/order-info.js";
-import {OrderStorage} from "../../../scripts/indexedDb.js";
-import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation.js";
-import {restoreFormTimeout} from "../../../scripts/functions.js";
+import {Page} from "../../../scripts/page";
+import {orderInfo} from "../../../scripts/order-info";
+import {OrderStorage} from "../../../scripts/indexedDb";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation";
+import {restoreFormTimeout} from "../../../scripts/functions/functions";
 
 export class Step4Order extends Page {
-    storage = new OrderStorage();
-
     constructor() {
         super();
+        this.storage = new OrderStorage();
         this.storage.init();
     }
     async resolve () {
         return {
-            template: await fetch('pages/order-now/step-4/step-4.html').then(res => res.text())
+            template: await fetch(require('./step-4-page.html')).then(res => res.text())
         };
     }
 

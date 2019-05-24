@@ -1,9 +1,9 @@
-import {Page} from "../../../scripts/page.js";
+import {Page} from "../../../scripts/page";
 
 export class SuccessPage extends Page{
     async resolve () {
         return {
-            template: await fetch('pages/order-now/wait-for-your-cab/wait-for-your-cab.html').then(res => res.text())
+            template: await fetch(require('./wait-for-your-cab-page.html')).then(res => res.text())
         };
     }
 

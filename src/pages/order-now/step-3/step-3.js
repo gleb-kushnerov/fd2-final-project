@@ -1,11 +1,11 @@
-import {Page} from "../../../scripts/page.js";
-import {orderInfo} from "../../../scripts/order-info.js";
-import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation.js";
+import {Page} from "../../../scripts/page";
+import {orderInfo} from "../../../scripts/order-info";
+import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation";
 
 export class Step3Order extends Page{
     async resolve () {
         return {
-            template: await fetch('pages/order-now/step-3/step-3.html').then(res => res.text())
+            template: await fetch(require('./step-3-page.html')).then(res => res.text())
         };
     }
 
