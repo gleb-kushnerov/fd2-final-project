@@ -2,6 +2,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 
 const SRC_DIR = './src';
@@ -72,5 +73,8 @@ module.exports = {
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
         }),
+        new ServiceWorkerWebpackPlugin({
+            entry: path.join(__dirname, 'src/sw.js'),
+        })
     ]
 };

@@ -25,4 +25,17 @@ export function restoreFormTimeout(orders) {
     paramsForTimeout.delay = getMilliseconds(lastOrder.time, lastOrder.date) - Date.now();
     paramsForTimeout.id = lastOrder.id;
     setTimeout(restoreForm, paramsForTimeout.delay);
+    sendDelayToWorker(paramsForTimeout.delay);
+}
+
+async function sendDelayToWorker(delay) {
+    let registration = await navigator.serviceWorker.getRegistration();
+
+    registration.active.postMessage({
+        type: 'showNotification',
+        data: {
+            header: 'CabHub',
+            delay: delay
+        }
+    });
 }
