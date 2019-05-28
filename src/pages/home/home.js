@@ -1,9 +1,9 @@
 import {Page} from "../../scripts/page";
 import {OrderStorage} from "../../scripts/indexedDb";
-import {nameRegExp, phoneRegExp} from "../../scripts/regExp";
+import {nameRegExp, phoneRegExp, regExp} from "../../scripts/regExp";
 import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation";
 import {paramsForTimeout} from "../../scripts/order-info";
-import {restoreFormTimeout} from "../../scripts/functions/functions";
+import {restoreFormTimeout, setMinValueAtr} from "../../scripts/functions/functions";
 
 
 export class Home extends Page {
@@ -27,14 +27,8 @@ export class Home extends Page {
 
     async afterRender() {
         let headerEl = document.getElementById('img-container'),
-            formContainerEl = document.getElementById('form-container'),
-            dateInputEl = document.forms.namedItem('book-cab-form').elements.namedItem('when'),
-            regExp = /-(\d)-/;
-        let dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
-                .replace(/\. /g, '-')
-                .replace(/\./, '')
-                .replace(regExp, '-0$1-');
-        dateInputEl.setAttribute('min', dateValueStr);
+            formContainerEl = document.getElementById('form-container');
+        setMinValueAtr();
         headerEl.append(this.resolvedData.image);
         formContainerEl.addEventListener('click', this);
         formContainerEl.addEventListener('input', this);
