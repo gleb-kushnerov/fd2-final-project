@@ -1,5 +1,4 @@
 import {paramsForTimeout} from "../order-info";
-import {OrderStorage} from "../indexedDb";
 import {regExp} from "../regExp";
 
 export async function restoreForm() {
@@ -50,3 +49,4 @@ export function setMinValueAtr() {
         .replace(regExp, '-0$1-');
     dateInputEl.setAttribute('min', dateValueStr);
 }
+

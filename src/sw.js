@@ -1,4 +1,5 @@
 import {OrderStorage} from "./scripts/indexedDb";
+import {paramsForTimeout} from "./scripts/order-info";
 
 let PERMISSION;
 let orderId;
@@ -10,6 +11,8 @@ self.addEventListener('message', ({data: event}) => {
         case 'showNotification':
             return setTimeout(showUserNotification, event.data.delay);
         case 'changeOrder':
+            paramsForTimeout.delay = null;
+            paramsForTimeout.id = null;
             return orderId = event.data.orderId;
     }
 });
