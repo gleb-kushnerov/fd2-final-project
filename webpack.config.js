@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 
 const SRC_DIR = './src';
@@ -38,7 +39,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[hash].[ext]',
+                            name: '[name].[ext]',
                             outputPath: './assets/images',
                         }
                     }
@@ -75,6 +76,12 @@ module.exports = {
         }),
         new ServiceWorkerWebpackPlugin({
             entry: path.join(__dirname, 'src/sw.js'),
-        })
+        }),
+        new CopyPlugin([
+            {
+                from: 'src/assets/images',
+                to: './assets/images'
+            }
+        ])
     ]
 };
