@@ -11,7 +11,7 @@ export function lengthAndPatternValidation() {
     }
 }
 
-export function removeErrorPlate() {
+export function removeErrorPlate(event) {
     let inputEl = event.target.closest('input');
     if (inputEl) {
         let errorSpanEl = inputEl.nextElementSibling;

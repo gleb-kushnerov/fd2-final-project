@@ -50,7 +50,7 @@ export class Step4Order extends Page {
                    }
                }
            case 'input': {
-               removeErrorPlate();
+               removeErrorPlate(event);
            }
        }
     }

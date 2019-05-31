@@ -25,6 +25,7 @@
       flex: 0 0 420px;
       text-align: left;
       background-color: #fff;
+      height: 574px;
 
       .form-header {
         box-sizing: border-box;
@@ -67,6 +68,7 @@
         .form-line {
           margin-bottom: 15px;
           width: 100%;
+          height: 74px;
           display: flex;
           justify-content: space-between;
 
@@ -173,6 +175,10 @@
           margin: 40px 0 20px 0;
         }
       }
+    }
+
+    .form.plate {
+      height: auto;
     }
   }
 }

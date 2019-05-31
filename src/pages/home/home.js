@@ -3,7 +3,11 @@ import {OrderStorage} from "../../scripts/indexedDb";
 import {nameRegExp, phoneRegExp, regExp} from "../../scripts/regExp";
 import {lengthAndPatternValidation, removeErrorPlate} from "../../scripts/validation";
 import {paramsForTimeout} from "../../scripts/order-info";
-import {restoreFormTimeout, setMinValueAtr} from "../../scripts/functions/functions";
+import {
+    createOrderInfoPlate,
+    restoreFormTimeout,
+    setMinValueAtr
+} from "../../scripts/functions/functions";
 
 
 export class Home extends Page {
@@ -34,7 +38,7 @@ export class Home extends Page {
         formContainerEl.addEventListener('input', this);
         let orders = await this.storage.getAll();
         if (orders.length !== 0 && !orders[orders.length - 1].complete) {
-            this.createOrderInfoPlate(orders);
+            createOrderInfoPlate(orders);
         }
     }
 
@@ -51,7 +55,7 @@ export class Home extends Page {
                        this.makeOrder();
                        paramsForTimeout.formHtml = formContainerEl.innerHTML;
                        let orders = await this.storage.getAll();
-                       this.createOrderInfoPlate(orders);
+                       createOrderInfoPlate(orders);
                        if (orders) {
                            restoreFormTimeout(orders);
                        }
@@ -65,7 +69,7 @@ export class Home extends Page {
                    }
                }
            case 'input':
-               removeErrorPlate();
+               removeErrorPlate(event);
                let selectEl = event.target.closest('select');
                if (selectEl) {
                    let errorSpanEl = selectEl.nextElementSibling;
@@ -73,31 +77,6 @@ export class Home extends Page {
                    errorSpanEl.textContent = '';
                }
        }
-    }
-
-    createOrderInfoPlate(orders) {
-        let formHeaderEl = document.createElement('div'),
-            formLineEl1 = document.createElement('div'),
-            formLineEl2 = document.createElement('div'),
-            formLineEl3 = document.createElement('div'),
-            formLineEl4 = document.createElement('div'),
-            lastOrder = orders[orders.length - 1],
-            fragment = document.createDocumentFragment(),
-            formContainerEl = document.getElementById('form-container');
-
-        formHeaderEl.innerHTML = '<h2>order <span>info</span></h2>';
-        formHeaderEl.classList.add('form-header');
-        formLineEl1.classList.add('form-line-info');
-        formLineEl2.classList.add('form-line-info');
-        formLineEl3.classList.add('form-line-info');
-        formLineEl4.classList.add('form-line-info');
-        formLineEl1.textContent = `Name: ${lastOrder.name}`;
-        formLineEl2.innerHTML = `<span>When: ${new Intl.DateTimeFormat('ru').format(lastOrder.date)}</span> <span>Time: ${lastOrder.time}</span>`;
-        formLineEl3.innerHTML = `<span>Start: ${lastOrder.start}</span> <span>End: ${lastOrder.end}</span>`;
-        formLineEl4.textContent = `Class: ${lastOrder.class}`;
-        fragment.append(formHeaderEl, formLineEl1, formLineEl2, formLineEl3, formLineEl4);
-        formContainerEl.innerHTML = '';
-        formContainerEl.append(fragment);
     }
 
     async makeOrder() {
