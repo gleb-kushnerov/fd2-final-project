@@ -42,17 +42,13 @@ async function sendDelayToWorker(delay, id) {
     });
 }
 
-export function setMinValueAtr() {
-    let formData = document.forms.namedItem('book-cab-form');
-    if (formData) {
-        let dateInputEl = formData.elements.namedItem('when');
-        let dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
-            .replace(/\. /g, '-')
-            .replace(/\./, '')
-            .replace(monthRegExp, '-0$1-')
-            .replace(dayRegExp, '-0$1');
-        dateInputEl.setAttribute('min', dateValueStr);
-    }
+export function setMinValueAtr(dateInput) {
+    let dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
+        .replace(/\. /g, '-')
+        .replace(/\./, '')
+        .replace(monthRegExp, '-0$1-')
+        .replace(dayRegExp, '-0$1');
+    dateInput.setAttribute('min', dateValueStr);
 }
 
 export function createOrderInfoPlate(orders) {

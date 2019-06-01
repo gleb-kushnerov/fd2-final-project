@@ -1,6 +1,7 @@
 import {Page} from "../../../scripts/page";
 import {orderInfo} from "../../../scripts/order-info";
 import {lengthAndPatternValidation, removeErrorPlate} from "../../../scripts/validation";
+import {setMinValueAtr} from "../../../scripts/functions/functions";
 
 export class Step3Order extends Page{
     async resolve () {
@@ -17,13 +18,8 @@ export class Step3Order extends Page{
 
     afterRender() {
         let nameplateEl = document.getElementById('nameplate-three'),
-            dateInputEl = document.getElementById('tariffs-date'),
-            regExp = /-(\d)-/,
-            dateValueStr = `${new Intl.DateTimeFormat('ko-KR').format(new Date)}`
-                .replace(/\. /g, '-')
-                .replace(/\./, '')
-                .replace(regExp, '-0$1-');
-        dateInputEl.setAttribute('min', dateValueStr);
+            dateInputEl = document.getElementById('tariffs-date');
+        setMinValueAtr(dateInputEl);
         nameplateEl.addEventListener('click', this);
         nameplateEl.addEventListener('input', this);
     }
@@ -45,7 +41,7 @@ export class Step3Order extends Page{
                     }
                 }
             case 'input':
-                removeErrorPlate();
+                removeErrorPlate(event);
         }
 
     }

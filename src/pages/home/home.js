@@ -31,8 +31,9 @@ export class Home extends Page {
 
     async afterRender() {
         let headerEl = document.getElementById('img-container'),
-            formContainerEl = document.getElementById('form-container');
-        setMinValueAtr();
+            formContainerEl = document.getElementById('form-container'),
+            dateInputEl = document.getElementById('tariffs-date');
+        setMinValueAtr(dateInputEl);
         headerEl.append(this.resolvedData.image);
         formContainerEl.addEventListener('click', this);
         formContainerEl.addEventListener('input', this);

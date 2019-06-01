@@ -28,8 +28,7 @@ function isNotificationGranted () {
 async function showUserNotification () {
     if (isNotificationGranted()) {
         self.registration.showNotification('CabHub', {
-            body: 'Your cab is ready!',
-            tag: 'vibration-sample'
+            body: 'Your cab is ready!'
         });
     }
     changeOrderStatus(orderId);
